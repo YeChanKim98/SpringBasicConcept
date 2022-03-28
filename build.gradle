@@ -1,0 +1,38 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.4'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'Spring_Core'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+// 롬복 적용 코드
+configurations{
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'javax.inject:javax.inject:1' // 자바표준 Provider 추가
+	implementation 'org.springframework.boot:spring-boot-starter-web' // 웹 라이브러리
+
+	// 롬복 적용 코드
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+	useJUnitPlatform()
+}
